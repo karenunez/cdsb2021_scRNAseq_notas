@@ -1,0 +1,45 @@
+---
+title: "How to use: 'usethis'"
+author: "Karen Nuñez"
+date: "8/9/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Estos son los pasos iniciales para crear un repositorio de R en github desde R
+
+```{r}
+# paquetes que vamos a requerir
+# install.packages(c("gitcreds", "gert", "gh"))
+
+library(gitcreds, gert, gh)
+
+##Crear un proyecto cambiando la dirección
+usethis::create_project("/Users/knunez/Documents/Git_Repos/cdsb2021_scRNAseq_notas/")
+
+# Para iniciar conexión con GitHub
+usethis::create_github_token() # redirige a github donde eligiras nombre especifico del token
+# copia el token para después ingresarlo con gitcreds_set()
+
+gitcreds::gitcreds_set() # aquí colocas el token (NO tu contraseña de github!!!)
+
+# Configurar usuario de gitHub
+usethis::edit_git_config() # que abre el archivo .gitconfig
+# colocaremos nombre y correo de cuenta de github. SOLO borrar los # y respetar los demas espacios
+# [user]
+#   name = N O M B R E
+#   email = correodeGithub
+
+# inicializar el repositorio de Git
+usethis::use_git() #
+
+# conectar tu repositorio local de Git con los servidores de GitHub
+usethis::use_github()
+
+# para checar cómo quedó la configuración
+gh::gh_whoami() 
+```
+
