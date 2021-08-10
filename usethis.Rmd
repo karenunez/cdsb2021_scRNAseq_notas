@@ -9,6 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+##Como creer un repositorio de Git
 Estos son los pasos iniciales para crear un repositorio de R en github desde R
 
 ```{r}
@@ -41,5 +42,26 @@ usethis::use_github()
 
 # para checar cómo quedó la configuración
 gh::gh_whoami() 
+```
+##Comandos de gert
+Comandos para subir los archivos a github por comandos
+
+```{r}
+# escribimos un nuevo archivo e indicamos dónde lo queremos
+writeLines("hola", "R/prueba.R")
+# también podemos hacerlo así
+usethis::use_r("archivo-prueba-github.R") # añade archivo al directorio R del proyecto actual
+
+# Por ejemplo podríamos probar añadir algo nuevo
+gert::git_add("R/archivo-prueba-github.R")
+
+# añadimos commit de lo que se hizo
+gert::git_commit("se subio archivo prueba")
+
+# nos da info de los commits
+gert::git_log()
+
+# sube tus cambios del repo local a los de github
+gert::git_push() # COMANDO IMPORTANTE
 ```
 
